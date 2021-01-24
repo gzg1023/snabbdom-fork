@@ -63,15 +63,15 @@ function setTextContent (node: Node, text: string | null): void {
 function getTextContent (node: Node): string | null {
   return node.textContent
 }
-
+// 元素节点
 function isElement (node: Node): node is Element {
   return node.nodeType === 1
 }
-
+// 文本节点
 function isText (node: Node): node is Text {
   return node.nodeType === 3
 }
-
+// Comment节点  https://developer.mozilla.org/zh-CN/docs/Web/API/Comment
 function isComment (node: Node): node is Comment {
   return node.nodeType === 8
 }

@@ -26,12 +26,12 @@ var data = {
   ]
 }
 
-function select (m) {
+function select(m) {
   data.selected = m
   render()
 }
 
-function render () {
+function render() {
   vnode = patch(vnode, view(data))
 }
 
@@ -58,7 +58,11 @@ const detailView = (movie) =>
         h('div.hero.header-title', { hero: { id: movie.title } }, movie.title),
         h('div.spacer'),
         h('div.close', {
-          on: { click: [select, undefined] },
+          on: {
+            click: () => {
+              select(undefined)
+            }
+          },
           style: {
             transform: 'scale(0)',
             delayed: { transform: 'scale(1)' },

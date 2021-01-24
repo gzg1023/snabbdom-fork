@@ -1,9 +1,10 @@
 import { vnode, VNode } from './vnode'
 import { htmlDomApi, DOMAPI } from './htmldomapi'
-
+// 真实dom转vnode函数
 export function toVNode (node: Node, domApi?: DOMAPI): VNode {
   const api: DOMAPI = domApi !== undefined ? domApi : htmlDomApi
   let text: string
+  // 如果是元素就vnode需要的属性一个一个取出来，并对子元素对内容进行复制
   if (api.isElement(node)) {
     const id = node.id ? '#' + node.id : ''
     const cn = node.getAttribute('class')
@@ -25,13 +26,16 @@ export function toVNode (node: Node, domApi?: DOMAPI): VNode {
       children.push(toVNode(elmChildren[i], domApi))
     }
     return vnode(sel, { attrs }, children, undefined, node)
+    // 如果是文本节点，直接取出文本内容，然后专为一个vnode
   } else if (api.isText(node)) {
     text = api.getTextContent(node) as string
     return vnode(undefined, undefined, undefined, text, node)
+    // 如果是comment节点转为注释节点
   } else if (api.isComment(node)) {
     text = api.getTextContent(node) as string
     return vnode('!', {}, [], text, node as any)
   } else {
+    // 如果是都不存在，转为空节点
     return vnode('', {}, [], undefined, node as any)
   }
 }
