@@ -15,7 +15,13 @@ function isDef<A> (s: A): s is NonUndefined<A> {
 type VNodeQueue = VNode[]
 
 const emptyNode = vnode('', {}, [], undefined, undefined)
-
+/**
+ * 
+ * @param vnode1 一般指旧节点
+ * @param vnode2 一般指新节点
+ * 通过对比key和sel属性来判断两个节点是否相同
+ * 
+ */
 function sameVnode (vnode1: VNode, vnode2: VNode): boolean {
   return vnode1.key === vnode2.key && vnode1.sel === vnode2.sel
 }

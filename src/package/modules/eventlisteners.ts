@@ -81,6 +81,7 @@ function updateEventListeners (oldVnode: VNode, vnode?: VNode): void {
     if (!oldOn) {
       for (name in on) {
         // add listener if element was changed or new listeners added
+        // 可以一次性绑定多个监听事件，所以通过循环的方式依次添加
         elm.addEventListener(name, listener, false)
       }
     } else {
