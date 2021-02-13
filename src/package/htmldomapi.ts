@@ -1,3 +1,6 @@
+/**
+ * 封装一些原生DOM操作
+ */
 export interface DOMAPI {
   createElement: (tagName: any) => HTMLElement
   createElementNS: (namespaceURI: string, qualifiedName: string) => Element

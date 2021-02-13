@@ -19,17 +19,19 @@ function addNS (data: any, children: VNodes | undefined, sel: string | undefined
 }
 /**
  * h函数的重载（ts支持）通过参数来区分不同的函数
- * @param sel 传入的sel属性
+ * @param sel 标签名称或标签名称+选择器
  */
 export function h (sel: string): VNode
 export function h (sel: string, data: VNodeData | null): VNode
 export function h (sel: string, children: VNodeChildren): VNode
 export function h (sel: string, data: VNodeData | null, children: VNodeChildren): VNode
+// sel： 标签名  b：标签属性 c：子元素或者textConent
 export function h (sel: any, b?: any, c?: any): VNode {
   var data: VNodeData = {}
   var children: any
   var text: any
   var i: number
+  // 子元素或 text content的内容
   if (c !== undefined) {
     if (b !== null) {
       data = b
@@ -55,6 +57,7 @@ export function h (sel: any, b?: any, c?: any): VNode {
       if (is.primitive(children[i])) children[i] = vnode(undefined, undefined, undefined, children[i], undefined)
     }
   }
+  // 特殊处理svg元素
   if (
     sel[0] === 's' && sel[1] === 'v' && sel[2] === 'g' &&
     (sel.length === 3 || sel[3] === '.' || sel[3] === '#')

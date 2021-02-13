@@ -7,6 +7,8 @@ and performance.
 
 ## Snabbdom源码注释 和原理分析
 
+博客地址：https://gzg.me/posts/2021/snabbdom_source/
+
 ### 源码结构
 
 ` src/package`
